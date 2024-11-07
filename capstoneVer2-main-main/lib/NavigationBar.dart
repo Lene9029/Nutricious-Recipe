@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:recipe_page_new/Detect_Object_Page.dart';
 import 'package:recipe_page_new/Select_Ingredients_Page.dart';
 import 'package:recipe_page_new/profile_page.dart';
@@ -20,7 +21,7 @@ class MainPage extends StatelessWidget {
           height: 50,
           items: const <Widget>[
             Icon(Icons.restaurant_menu, size: 30),
-            Icon(Icons.add, size: 30),
+            Icon(Ionicons.checkmark_done, size: 30),
             Icon(Icons.camera, size: 30),
             Icon(Icons.favorite, size: 30),
             Icon(Icons.person, size: 30),
