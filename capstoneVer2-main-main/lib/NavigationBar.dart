@@ -21,7 +21,7 @@ class MainPage extends StatelessWidget {
           height: 50,
           items: const <Widget>[
             Icon(Icons.restaurant_menu, size: 30),
-            Icon(Ionicons.checkmark_done, size: 30),
+            Icon(Icons.check_box_rounded, size: 30),
             Icon(Icons.camera, size: 30),
             Icon(Icons.favorite, size: 30),
             Icon(Icons.person, size: 30),
