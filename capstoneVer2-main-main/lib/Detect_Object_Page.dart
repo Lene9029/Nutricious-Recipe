@@ -52,7 +52,7 @@ class _HomeScreenState extends State<DetectObjectPage> {
   }
 
   Future<void> runObjectDetection() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
 
     if (image != null) {
       setState(() {
