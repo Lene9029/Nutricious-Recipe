@@ -31,5 +31,5 @@ List<OnboardingModel> onboardintItems = [
   OnboardingModel(
     'assets/jsonfiles/start.json',
     'Lets Get Started',
-    'Test'),
+    ''),
 ];
