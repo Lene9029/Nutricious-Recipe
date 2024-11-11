@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:recipe_page_new/welcomepage/welcome_page.dart';
+import 'package:recipe_page_new/OnboardingScreen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
           radius: 50,
         ),
       ),
-      nextScreen: WelcomePage(),
+      nextScreen: const Onboardingscreen(),
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.lightGreen,
     );

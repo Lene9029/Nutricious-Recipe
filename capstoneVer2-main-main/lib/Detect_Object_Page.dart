@@ -92,6 +92,7 @@ class _HomeScreenState extends State<DetectObjectPage> {
     final allergensProvider = Provider.of<AlleresProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Ingredient Detection'),
         automaticallyImplyLeading: false,

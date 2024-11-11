@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
+import 'package:recipe_page_new/select_AllergiesDiets_Page.dart';
 import 'package:recipe_page_new/welcomepage/welcome_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -8,6 +9,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final myProvider = Provider.of<RecipeClass>(context); 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -22,7 +24,7 @@ class ProfilePage extends StatelessWidget {
             children: [
         Image.asset(
           'images/profilebackground.jpg',
-          fit: BoxFit.cover, // Adjust the image to cover the entire container
+          fit: BoxFit.cover, 
         ),
         const Center(
           child: CircleAvatar(
@@ -44,7 +46,7 @@ class ProfilePage extends StatelessWidget {
                       color: Colors.black,
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectAllergiesdietsPage()));
                     },
                   ),
                   //myProvider.isDark
@@ -56,7 +58,7 @@ class ProfilePage extends StatelessWidget {
                      //     ),
                      //     onTap: () {
                    //         Provider.of<RecipeClass>(context, listen: false).changeIsDark();
-                            
+                              
                     //      },
                    //     )
                   //    : ListTile(

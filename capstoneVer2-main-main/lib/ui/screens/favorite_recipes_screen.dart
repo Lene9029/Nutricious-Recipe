@@ -11,6 +11,7 @@ class FavoriteRecipesScreen extends StatelessWidget {
     return Consumer<RecipeClass>(
       builder: (BuildContext context, myProvider, Widget? child) {
         return Scaffold(
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: Column(
               children: [

@@ -15,6 +15,7 @@ class ShowRecipeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<RecipeClass>(
       builder: ((context, provider, child) => Scaffold(
+        backgroundColor: Colors.white,
             body: SafeArea(
               child: Stack(
                 children: [ SingleChildScrollView(

@@ -77,6 +77,7 @@ class _SearchRecipeScreenState extends State<SelectedIngredientsResult> {
  @override
 Widget build(BuildContext context) {
   return Scaffold(
+    backgroundColor: Colors.white,
     body: SafeArea(
       child: Stack(
         children: [Column(

@@ -61,6 +61,7 @@ class _SeelecIgredientsPageState extends State<SelecIgredientsPage> {
     final allergensProvider = Provider.of<AlleresProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SizedBox(
           height: double.infinity,

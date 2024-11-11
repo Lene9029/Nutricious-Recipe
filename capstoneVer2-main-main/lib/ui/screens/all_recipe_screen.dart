@@ -25,6 +25,7 @@ class _MainRecipeScreenState extends State<MainRecipeScreen> {
   Widget build(BuildContext context) {
     return Consumer<RecipeClass>(
       builder: (BuildContext context, myProvider, Widget? child) => Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Column(
             children: [

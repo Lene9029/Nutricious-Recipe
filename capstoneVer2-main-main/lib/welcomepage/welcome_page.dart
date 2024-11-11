@@ -158,7 +158,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     alleresProvider.updateAllergens(allergens);
     alleresProvider.updateRestrictions(restrictions);
       
-      Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage()));
       
     }
   } 
