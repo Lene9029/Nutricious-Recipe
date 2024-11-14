@@ -30,11 +30,14 @@ void didChangeDependencies() {
 }
 
 void missingRecipes() {
-  List<String> recipeIngredientsList = widget.recipeModel.ingredients.split('\r');
+  // Split the ingredients string into a list and convert each ingredient to lowercase
+  List<String> recipeIngredientsList = widget.recipeModel.ingredients
+      .split('\r\n')
+      .map((ingredient) => ingredient.toLowerCase()) // Convert each ingredient to lowercase
+      .toList();
 
   print("Recipe Ingredients: $recipeIngredientsList");
   print("Scanned Ingredients (before conversion): $scannedIngredients");
-
 
   setState(() {
     missingIngredients = recipeIngredientsList
@@ -47,6 +50,7 @@ void missingRecipes() {
     print("database Ingredients: ${widget.recipeModel.ingredients}");
   });
 }
+
 
 
   @override
@@ -84,6 +88,7 @@ void missingRecipes() {
                 Text(
                   'Missing Ingredients: $missingIngredients',
                   style: const TextStyle(color: Colors.red),
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
                 Padding(
