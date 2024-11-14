@@ -30,10 +30,9 @@ void didChangeDependencies() {
 }
 
 void missingRecipes() {
-  // Split the ingredients string into a list and convert each ingredient to lowercase
   List<String> recipeIngredientsList = widget.recipeModel.ingredients
       .split('\r\n')
-      .map((ingredient) => ingredient.toLowerCase()) // Convert each ingredient to lowercase
+      .map((ingredient) => ingredient.toLowerCase())
       .toList();
 
   print("Recipe Ingredients: $recipeIngredientsList");
