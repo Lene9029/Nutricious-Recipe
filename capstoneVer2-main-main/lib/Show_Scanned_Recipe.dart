@@ -4,16 +4,16 @@ import 'package:recipe_page_new/models/recipe_model.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
 import 'package:recipe_page_new/providers/result_Provider.dart';
 
-class ShowRecipeScreen extends StatefulWidget {
+class ShowScannedRecipe extends StatefulWidget {
   final RecipeModel recipeModel;
 
-  const ShowRecipeScreen({super.key, required this.recipeModel});
+  const ShowScannedRecipe({super.key, required this.recipeModel});
 
   @override
-  State<ShowRecipeScreen> createState() => _ShowRecipeScreenState();
+  State<ShowScannedRecipe> createState() => _ShowScannedRecipeState();
 }
 
-class _ShowRecipeScreenState extends State<ShowRecipeScreen> {
+class _ShowScannedRecipeState extends State<ShowScannedRecipe> {
   List<String> scannedIngredients = [];
   List<String> missingIngredients = [];
 
@@ -45,8 +45,6 @@ void missingRecipes() {
     print("recipeIngredientsList: $recipeIngredientsList");
     print("recipeIngredientsList length: ${recipeIngredientsList.length}");
     print("database Ingredients: ${widget.recipeModel.ingredients}");
-
-    if(missingIngredients.isNotEmpty)scannedIngredients.clear();
   });
 }
 
@@ -83,12 +81,12 @@ void missingRecipes() {
                     ),
                   ),
                 ),
-                //const SizedBox(height: 10),
-                //if (scannedIngredients.isNotEmpty) Text(
-                 // 'Missing Ingredients: $missingIngredients',
-                 // style: const TextStyle(color: Colors.red),
-                 // textAlign: TextAlign.center,
-               // ),
+                const SizedBox(height: 10),
+                Text(
+                  'Missing Ingredients: $missingIngredients',
+                  style: const TextStyle(color: Colors.red),
+                  textAlign: TextAlign.center,
+                ),
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(10),

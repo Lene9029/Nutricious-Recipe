@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_page_new/models/recipe_model.dart';
-import 'package:recipe_page_new/providers/result_Provider.dart';
-import 'package:recipe_page_new/ui/widgets/recipe_widget.dart';
+import 'package:recipe_page_new/ui/widgets/scanned_recipe_widget.dart';
 
 
 class ShowRecipeWithIngredients extends StatefulWidget {
@@ -140,7 +139,7 @@ Widget build(BuildContext context) {
                         ),
                         itemCount: filteredFinal.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return RecipeWidget(filteredFinal[index]);
+                          return ScannedRecipeWidget(filteredFinal[index]);
                         },
                       )
                     : const Center(
