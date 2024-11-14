@@ -272,7 +272,7 @@ class _EditIngredientsPageState extends State<EditIngredientsPage> {
                           Provider.value(value: allergensProvider.restrictions),
                         ],
                         child: ShowRecipeWithIngredients(
-                          resultData: resultProvider.resultData,
+                          resultData: combinedData,
                           recipes: myProvider.allRecipes,
                           allergens: allergensProvider.allergens,
                           restrictions: allergensProvider.restrictions,
