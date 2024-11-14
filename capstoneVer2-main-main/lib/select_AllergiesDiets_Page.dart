@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_page_new/NavigationBar.dart';
@@ -64,6 +62,9 @@ class _MyWidgetState extends State<SelectAllergiesdietsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           Container(
@@ -76,6 +77,7 @@ class _MyWidgetState extends State<SelectAllergiesdietsPage> {
               ),
             ),
             child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -197,58 +199,54 @@ class _MyWidgetState extends State<SelectAllergiesdietsPage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              color: Colors.black,
-              height:60 ,
-              child: Row(                
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-          onTap: () {
-            List<String> allergens = getSelectedAllergens();
-            List<String> restrictions = getSelectedRestrictions();
-      
-            print(restrictions);
-            print(allergens);
-      
-            final alleresProvider = Provider.of<AlleresProvider>(context, listen: false);
-            alleresProvider.updateAllergens(allergens);
-            alleresProvider.updateRestrictions(restrictions);
-      
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage()));
-          },
-          child:Container(
-            height: 50,  
-            width: 350,  
-            decoration: BoxDecoration(
-              color: Colors.lightGreen,  
-              borderRadius: BorderRadius.circular(12),  
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  offset: const Offset(0, 4),
-                  blurRadius: 8,
-                ),
-              ],
-            ),
-            alignment: Alignment.center,  
-            child: const Text(
-              'Save Selections',
-              style: TextStyle(
-                color: Colors.white,  
-                fontSize: 18,  
-                fontWeight: FontWeight.bold,  
-              ),
-            ),
-          ),
-        )
-                ],
-              ),
-            ),
-          ),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                List<String> allergens = getSelectedAllergens();
+                List<String> restrictions = getSelectedRestrictions();
+        
+                print(restrictions);
+                print(allergens);
+        
+                final alleresProvider = Provider.of<AlleresProvider>(context, listen: false);
+                alleresProvider.updateAllergens(allergens);
+                alleresProvider.updateRestrictions(restrictions);
+        
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage()));
+              },
+              child: Container(
+                height: 50,  
+                width: 350,  
+                decoration: BoxDecoration(
+                  color: Colors.lightGreen,  
+                  borderRadius: BorderRadius.circular(12),  
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      offset: const Offset(0, 4),
+                      blurRadius: 8,
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,  
+                child: const Text(
+                  'Save Selections',
+                  style: TextStyle(
+                    color: Colors.white,  
+                    fontSize: 18,  
+                    fontWeight: FontWeight.bold,  
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

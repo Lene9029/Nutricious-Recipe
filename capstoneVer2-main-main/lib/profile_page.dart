@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
 import 'package:recipe_page_new/select_AllergiesDiets_Page.dart';
-import 'package:recipe_page_new/welcomepage/welcome_page.dart';
 
 class ProfilePage extends StatelessWidget {
   @override

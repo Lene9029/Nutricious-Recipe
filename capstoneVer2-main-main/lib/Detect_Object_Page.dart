@@ -6,10 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter_pytorch/pigeon.dart';
 import 'package:flutter_pytorch/flutter_pytorch.dart';
 import 'package:provider/provider.dart';
+import 'package:recipe_page_new/Edit_Ingredients_Page.dart';
 import 'package:recipe_page_new/LoaderState.dart';
 import 'package:recipe_page_new/providers/alleres_provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
-import 'package:recipe_page_new/show_recipe.dart';
+import 'package:recipe_page_new/providers/result_Provider.dart';
+import 'package:recipe_page_new/show_recommendations_page.dart';
 
 class DetectObjectPage extends StatefulWidget {
   const DetectObjectPage({Key? key}) : super(key: key);
@@ -52,7 +54,7 @@ class _HomeScreenState extends State<DetectObjectPage> {
   }
 
   Future<void> runObjectDetection() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       setState(() {
@@ -68,9 +70,12 @@ class _HomeScreenState extends State<DetectObjectPage> {
         );
 
         classNames = objDetect
-            .map((detection) => detection?.className ?? '')
-            .where((name) => name.isNotEmpty)
-            .toList();
+          .map((detection) => detection?.className ?? '')
+          .where((name) => name.isNotEmpty)
+          .toSet() 
+          .toList()
+          ..sort((a, b) => a.compareTo(b)); 
+
 
         setState(() {
           isLoading = false; 
@@ -90,6 +95,8 @@ class _HomeScreenState extends State<DetectObjectPage> {
   Widget build(BuildContext context) {
     final myProvider = Provider.of<RecipeClass>(context);
     final allergensProvider = Provider.of<AlleresProvider>(context);
+
+    
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -138,6 +145,11 @@ class _HomeScreenState extends State<DetectObjectPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  final resultProvider = Provider.of<ResultProvider>(context, listen: false);
+                  resultProvider.updateResult(classNames);
+                  
+                  print("Updated resultData: ${resultProvider.resultData}");
+                  
                   if (classNames.isNotEmpty) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -174,6 +186,26 @@ class _HomeScreenState extends State<DetectObjectPage> {
                   style: TextStyle(fontSize: 18),
                 ),
               ),
+
+              const SizedBox(height: 20),
+
+              if (_image != null) 
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => EditIngredientsPage(resultData: classNames)));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orangeAccent,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text(
+                    'Edit Ingredients',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
             ],
           ),
         ),

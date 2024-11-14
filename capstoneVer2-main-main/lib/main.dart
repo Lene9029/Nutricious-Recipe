@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_page_new/providers/alleres_provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
+import 'package:recipe_page_new/providers/result_Provider.dart';
 import 'package:recipe_page_new/ui/screens/favorite_recipes_screen.dart';
 import 'package:recipe_page_new/ui/screens/all_recipe_screen.dart';
 import 'package:recipe_page_new/ui/screens/new_recipe_screen.dart';
 import 'package:recipe_page_new/ui/screens/splash_screen.dart';
-import 'package:recipe_page_new/welcomepage/welcome_page.dart';
 
 import 'data_repository/dbHelper.dart';
 
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
           create: (context) => RecipeClass(),),
           ChangeNotifierProvider<AlleresProvider>(
           create: (context) => AlleresProvider(),),
+          ChangeNotifierProvider(create: (_) => ResultProvider())
           ],
         child: const InitApp());
     
@@ -55,7 +56,7 @@ class InitApp extends StatelessWidget {
         '/favorite_recipes_screen': (context) => const FavoriteRecipesScreen(),
         '/new_recipe_screen': (context) => const NewRecipeScreen(),
         '/main_recipe_screen': (context) => const MainRecipeScreen(),
-        '/welcome_page':(context) => WelcomePage()       
+               
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_page_new/models/recipe_model.dart';
+import 'package:recipe_page_new/providers/result_Provider.dart';
 import 'package:recipe_page_new/ui/widgets/recipe_widget.dart';
 
 
@@ -25,18 +26,17 @@ class ShowRecipeWithIngredients extends StatefulWidget {
 
 class _SearchRecipeScreenState extends State<ShowRecipeWithIngredients> {
   late List<RecipeModel> _filteredRecipes;
-  List<RecipeModel> _filteredRecipe = [];
   
   List<RecipeModel> filteredFinal = []; 
   List<RecipeModel> filteredrestrictions = []; 
   List<RecipeModel> filteredA = [];
-  List<RecipeModel> filteredR = []; 
+  List<RecipeModel> filteredR = [];
 
   void filterRecipe(String value) {
     setState(() {
       filteredFinal = _filteredRecipes
           .where((recipe) =>
-              recipe.ingredients.toLowerCase().contains(value.toLowerCase()))
+              recipe.name.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -49,6 +49,10 @@ class _SearchRecipeScreenState extends State<ShowRecipeWithIngredients> {
     return pattern.hasMatch(recipe.ingredients);
   });
 }).toList();
+    
+    print(widget.resultData);
+    print(widget.allergens);
+    print(widget.restrictions);    
 
     if (widget.restrictions.isNotEmpty) {
       _filteredRecipes = _filteredRecipes.where((recipe) {
