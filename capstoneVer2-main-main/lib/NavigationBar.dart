@@ -27,7 +27,7 @@ class MainPage extends StatelessWidget {
             Icon(Icons.person, size: 30),
           ],
           color: Colors.white,
-          buttonBackgroundColor: Colors.blue,
+          buttonBackgroundColor: Colors.lightGreen,
           backgroundColor: Colors.grey[200]!, 
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 500),

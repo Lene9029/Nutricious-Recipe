@@ -259,9 +259,11 @@ class _EditIngredientsPageState extends State<EditIngredientsPage> {
                   
                   List<String> combinedData = List.from(widget.resultData);  
                   combinedData.addAll(getSelectedCondiments());
+                  print(combinedData);
 
                   final resultProvider = Provider.of<ResultProvider>(context, listen: false);
                   resultProvider.updateResult(combinedData);
+                  print(resultProvider.resultData);
 
                   Navigator.of(context).push(
                     MaterialPageRoute(

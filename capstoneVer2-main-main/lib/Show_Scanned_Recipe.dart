@@ -18,146 +18,143 @@ class _ShowScannedRecipeState extends State<ShowScannedRecipe> {
   List<String> missingIngredients = [];
 
   @override
-void didChangeDependencies() {
-  super.didChangeDependencies();
-  final resultProvider = Provider.of<ResultProvider>(context);
-  setState(() {
-    scannedIngredients = resultProvider.resultData;
-  });
-  missingRecipes();
-}
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final resultProvider = Provider.of<ResultProvider>(context);
+    setState(() {
+      scannedIngredients = resultProvider.resultData;
+    });
+    missingRecipes();
+  }
 
-void missingRecipes() {
-  List<String> recipeIngredientsList = widget.recipeModel.ingredients
-      .split('\r\n')
-      .map((ingredient) => ingredient.toLowerCase())
-      .toList();
-
-  print("Recipe Ingredients: $recipeIngredientsList");
-  print("Scanned Ingredients (before conversion): $scannedIngredients");
-
-  setState(() {
-    missingIngredients = recipeIngredientsList
-        .where((ingredient) => !scannedIngredients.contains(ingredient))  
+  void missingRecipes() {
+    List<String> recipeIngredientsList = widget.recipeModel.ingredients
+        .split('\r\n')
+        .map((ingredient) => ingredient.toLowerCase())
         .toList();
 
-    print("Missing Ingredients: $missingIngredients");
-    print("recipeIngredientsList: $recipeIngredientsList");
-    print("recipeIngredientsList length: ${recipeIngredientsList.length}");
-    print("database Ingredients: ${widget.recipeModel.ingredients}");
-  });
-}
-
-
+    setState(() {
+      missingIngredients = recipeIngredientsList
+          .where((ingredient) => !scannedIngredients.contains(ingredient))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Stack(children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                if (widget.recipeModel.imagePath != null)
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(16),
-                        bottomRight: Radius.circular(16)),
-                    child: Image.asset(
-                      widget.recipeModel.imagePath ?? '',
-                      fit: BoxFit.cover,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  if (widget.recipeModel.imagePath != null)
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16)),
+                      child: Image.asset(
+                        widget.recipeModel.imagePath ?? '',
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  else
+                    const SizedBox(height: 10),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Text(
+                      widget.recipeModel.name,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  )
-                else
+                  ),
                   const SizedBox(height: 10),
-                const SizedBox(height: 20),
-                Center(
-                  child: Text(
-                    widget.recipeModel.name,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  missingIngredients.length == 1 ?
+                  const Text('') 
+                  :
+                    Text(
+                      'Missing Ingredients: $missingIngredients',
+                      style: const TextStyle(color: Colors.red),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Missing Ingredients: $missingIngredients',
-                  style: const TextStyle(color: Colors.red),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Container(
+                  const SizedBox(height: 10),
+                  Padding(
                     padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: !Provider.of<RecipeClass>(context).isDark
-                          ? Colors.white60
-                          : null,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        const Text(
-                          'Preparation time:',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          '${widget.recipeModel.preperationTime} mins',
-                          style: const TextStyle(fontSize: 16, color: Colors.black),
-                        ),
-                      ],
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: !Provider.of<RecipeClass>(context).isDark
+                            ? Colors.white60
+                            : null,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'Preparation time:',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            '${widget.recipeModel.preperationTime} mins',
+                            style: const TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                _buildDetailsSection('Ingredients', widget.recipeModel.ingredients),
-                const SizedBox(height: 10),
-                _buildDetailsSection('Instructions', widget.recipeModel.instructions),
-                const SizedBox(height: 10),
-                _buildDetailsSection(
-                    'Allergen Statement', widget.recipeModel.allergenStatement),
-                const SizedBox(height: 10),
-                _buildDetailsSection(
-                    'Restriction Statement', widget.recipeModel.restrictionStatement),
-                const SizedBox(height: 10),
-              ],
+                  const SizedBox(height: 10),
+                  _buildDetailsSection('Ingredients', widget.recipeModel.ingredients),
+                  const SizedBox(height: 10),
+                  _buildDetailsSection('Instructions', widget.recipeModel.instructions),
+                  const SizedBox(height: 10),
+                  _buildDetailsSection(
+                      'Allergen Statement', widget.recipeModel.allergenStatement),
+                  const SizedBox(height: 10),
+                  _buildDetailsSection(
+                      'Restriction Statement', widget.recipeModel.restrictionStatement),
+                  const SizedBox(height: 10),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            top: 10,
-            left: 15,
-            child: Stack(children: [
-              Opacity(
-                opacity: 0.2,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.black),
-                  child: IconButton(
-                    onPressed: () {},
+            Positioned(
+              top: 10,
+              left: 15,
+              child: Stack(
+                children: [
+                  Opacity(
+                    opacity: 0.2,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.black),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.arrow_back_ios_new,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  IconButton(
                     icon: const Icon(
                       Icons.arrow_back_ios_new,
                       color: Colors.white,
                     ),
+                    onPressed: () => Navigator.pop(context),
                   ),
-                ),
+                ],
               ),
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.white,
-                ),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ]),
-          )
-        ]),
+            )
+          ],
+        ),
       ),
     );
   }
