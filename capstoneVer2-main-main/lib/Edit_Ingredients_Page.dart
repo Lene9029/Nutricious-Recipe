@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_page_new/providers/alleres_provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
+import 'package:recipe_page_new/providers/result_Provider.dart';
 import 'package:recipe_page_new/show_recommendations_page.dart';
 
 class EditIngredientsPage extends StatefulWidget {
@@ -259,6 +260,9 @@ class _EditIngredientsPageState extends State<EditIngredientsPage> {
                   List<String> combinedData = List.from(widget.resultData);  
                   combinedData.addAll(getSelectedCondiments());
 
+                  final resultProvider = Provider.of<ResultProvider>(context, listen: false);
+                  resultProvider.updateResult(combinedData);
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => MultiProvider(
@@ -268,7 +272,7 @@ class _EditIngredientsPageState extends State<EditIngredientsPage> {
                           Provider.value(value: allergensProvider.restrictions),
                         ],
                         child: ShowRecipeWithIngredients(
-                          resultData: combinedData,
+                          resultData: resultProvider.resultData,
                           recipes: myProvider.allRecipes,
                           allergens: allergensProvider.allergens,
                           restrictions: allergensProvider.restrictions,
