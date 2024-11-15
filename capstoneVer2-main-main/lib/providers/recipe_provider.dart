@@ -63,7 +63,7 @@ class RecipeClass extends ChangeNotifier {
     DbHelper.dbHelper.updateIsFavorite(recipeModel);
     getRecipes();
   }
-
+  
   deleteRecipe(RecipeModel recipeModel) {
     DbHelper.dbHelper.deleteRecipe(recipeModel);
     getRecipes();

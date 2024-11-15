@@ -6,7 +6,6 @@ import 'package:recipe_page_new/providers/recipe_provider.dart';
 import 'package:recipe_page_new/providers/result_Provider.dart';
 import 'package:recipe_page_new/ui/screens/favorite_recipes_screen.dart';
 import 'package:recipe_page_new/ui/screens/all_recipe_screen.dart';
-import 'package:recipe_page_new/ui/screens/new_recipe_screen.dart';
 import 'package:recipe_page_new/ui/screens/splash_screen.dart';
 
 import 'data_repository/dbHelper.dart';
@@ -54,7 +53,6 @@ class InitApp extends StatelessWidget {
       routes: {
         
         '/favorite_recipes_screen': (context) => const FavoriteRecipesScreen(),
-        '/new_recipe_screen': (context) => const NewRecipeScreen(),
         '/main_recipe_screen': (context) => const MainRecipeScreen(),
                
       },

@@ -40,7 +40,7 @@ class _NewRecipeWidgetState extends State<RecipeWidget> {
                   ? const Center(
                       child: CircleAvatar(
                         backgroundImage: AssetImage(
-                            'images/logo.png'), // Make sure the path is correct
+                            'images/logo.png'), 
                       ),
                     )
                   : Image.asset(
