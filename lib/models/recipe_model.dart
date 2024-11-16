@@ -14,6 +14,8 @@ class RecipeModel {
   late String restrictions;
   late String allergenStatement;
   late String restrictionStatement;
+  late String otherInformations;
+
 
   RecipeModel({
     this.id,
@@ -28,7 +30,8 @@ class RecipeModel {
    required this.allergensName,
    required this.restrictions,
    required this.allergenStatement,
-   required this.restrictionStatement
+   required this.restrictionStatement,
+   required this. otherInformations
    
   });
 
@@ -44,7 +47,8 @@ class RecipeModel {
       'allergenName': allergensName,
       'restrictions': restrictions,
       'allergenStatement': allergenStatement,
-      'restrictionStatement': restrictionStatement
+      'restrictionStatement': restrictionStatement,
+      'otherInformations': otherInformations
     };
   }
 
@@ -60,6 +64,7 @@ class RecipeModel {
         restrictions: map['restrictions'] ?? '',
         allergenStatement: map['allergenStatement'] ?? '',
         restrictionStatement: map['restrictionStatement'] ?? '',
+        otherInformations: map['otherInformations'],
         imagePath: map['image']);
         
   }

@@ -5,14 +5,14 @@ import 'package:recipe_page_new/Selected_Ingredients_Result.dart';
 import 'package:recipe_page_new/providers/alleres_provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
 
-class SelecIgredientsPage extends StatefulWidget {
-  const SelecIgredientsPage({super.key});
+class SelectIngredientsPage extends StatefulWidget {
+  const SelectIngredientsPage({super.key});
 
   @override
-  State<SelecIgredientsPage> createState() => _SeelecIgredientsPageState();
+  State<SelectIngredientsPage> createState() => _SeelecIgredientsPageState();
 }
 
-class _SeelecIgredientsPageState extends State<SelecIgredientsPage> {
+class _SeelecIgredientsPageState extends State<SelectIngredientsPage> {
   final List<String> _meatIngredients = [
     'beef meat', 'beef intestines', 'beef kidney', 'beef ribs', 'beef tail', 
     'beef tripe', 'chicken', 'pork heart', 'pork liver', 'pork loin', 

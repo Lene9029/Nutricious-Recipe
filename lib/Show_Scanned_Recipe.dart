@@ -116,6 +116,9 @@ class _ShowScannedRecipeState extends State<ShowScannedRecipe> {
                   _buildDetailsSection('Instructions', widget.recipeModel.instructions),
                   const SizedBox(height: 10),
                   _buildDetailsSection(
+                      'Allergen Statement', widget.recipeModel.otherInformations),
+                  const SizedBox(height: 10),
+                  _buildDetailsSection(
                       'Allergen Statement', widget.recipeModel.allergenStatement),
                   const SizedBox(height: 10),
                   _buildDetailsSection(

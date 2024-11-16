@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_page_new/providers/alleres_provider.dart';
+import 'package:recipe_page_new/providers/navigation_provider.dart';
 import 'package:recipe_page_new/providers/recipe_provider.dart';
 import 'package:recipe_page_new/providers/result_Provider.dart';
 import 'package:recipe_page_new/ui/screens/favorite_recipes_screen.dart';
@@ -27,7 +28,9 @@ class MyApp extends StatelessWidget {
           create: (context) => RecipeClass(),),
           ChangeNotifierProvider<AlleresProvider>(
           create: (context) => AlleresProvider(),),
-          ChangeNotifierProvider(create: (_) => ResultProvider())
+          ChangeNotifierProvider(create: (_) => ResultProvider()),
+          ChangeNotifierProvider<NavigationProvider>(
+          create: (context) => NavigationProvider())
           ],
         child: const InitApp());
     

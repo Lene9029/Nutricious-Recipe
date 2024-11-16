@@ -10,7 +10,7 @@ class OnboardingModel{
 List<OnboardingModel> onboardintItems = [
   OnboardingModel(
     'assets/jsonfiles/first.json',
-     'Nutricious Recipe',
+     'Nutritious Recipe',
      'Say goodbye to recipe frustration! Nutritious Recipe brings you a world of delicious Filipino dishes, all filtered for your dietary needs and food allergens.'),
 
   OnboardingModel(

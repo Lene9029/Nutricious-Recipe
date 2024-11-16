@@ -1,7 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
-
-
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -24,6 +21,7 @@ class DbHelper {
   final String restrictions = 'restrictions';
   final String allergenStatement = 'allergenStatement';
   final String restrictionStatement = 'restrictionStatement';
+  final String otherInformations = 'otherInformations';
 
   Future<void> initDatabase() async {
     database = await connectToDatabase();
@@ -56,13 +54,13 @@ class DbHelper {
     version: 1,
     onCreate: (db, version) {
       db.execute(
-        'CREATE TABLE IF NOT EXISTS $tableName ($idColumn INTEGER PRIMARY KEY AUTOINCREMENT, $nameColumn TEXT, $preperationTimeColumn INTEGER, $isFavoriteColumn INTEGER, $ingredientsColumn TEXT, $instructionsColumn TEXT, $imageColumn TEXT, $allergensName TEXT, $restrictions TEXT, $allergenStatement TEXT, $restrictionStatement TEXT)',
+        'CREATE TABLE IF NOT EXISTS $tableName ($idColumn INTEGER PRIMARY KEY AUTOINCREMENT, $nameColumn TEXT, $preperationTimeColumn INTEGER, $isFavoriteColumn INTEGER, $ingredientsColumn TEXT, $instructionsColumn TEXT, $imageColumn TEXT, $allergensName TEXT, $restrictions TEXT, $allergenStatement TEXT, $restrictionStatement TEXT, $otherInformations TEXT)',
       );
     },
     onUpgrade: (db, oldVersion, newVersion) {
       //db.execute('DROP TABLE IF EXISTS $tableName');
       db.execute(
-        'CREATE TABLE IF NOT EXISTS $tableName ($idColumn INTEGER PRIMARY KEY AUTOINCREMENT, $nameColumn TEXT, $preperationTimeColumn INTEGER, $isFavoriteColumn INTEGER, $ingredientsColumn TEXT, $instructionsColumn TEXT, $imageColumn TEXT, $allergensName TEXT, $restrictions TEXT, $allergenStatement TEXT, $restrictionStatement TEXT)',
+        'CREATE TABLE IF NOT EXISTS $tableName ($idColumn INTEGER PRIMARY KEY AUTOINCREMENT, $nameColumn TEXT, $preperationTimeColumn INTEGER, $isFavoriteColumn INTEGER, $ingredientsColumn TEXT, $instructionsColumn TEXT, $imageColumn TEXT, $allergensName TEXT, $restrictions TEXT, $allergenStatement TEXT, $restrictionStatement TEXT, $otherInformations TEXT)',
       );
     },
   );

@@ -30,7 +30,7 @@ class _OnboardingscreenState extends State<Onboardingscreen> {
           ),
           // for lottie animation file
           Positioned(
-            top: 220,
+            top: 200,
             right: 0,
             left: 0,
             child: Lottie.asset(onboardintItems[currentIndex].lottieURL,

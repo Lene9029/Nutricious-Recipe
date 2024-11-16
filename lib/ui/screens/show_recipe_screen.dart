@@ -123,6 +123,9 @@ void missingRecipes() {
                 const SizedBox(height: 10),
                 _buildDetailsSection('Instructions', widget.recipeModel.instructions),
                 const SizedBox(height: 10),
+                  _buildDetailsSection(
+                      'Other Informations', widget.recipeModel.otherInformations),
+                const SizedBox(height: 10),
                 _buildDetailsSection(
                     'Allergen Statement', widget.recipeModel.allergenStatement),
                 const SizedBox(height: 10),
